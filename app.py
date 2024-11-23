@@ -57,7 +57,7 @@ def main():
         )
         st.altair_chart(c, use_container_width=True)
 
-    st.markdown(open("README.md").read())
+    st.markdown(open("README.md").read().replace('static/', 'app/static/'))
 
 
     return

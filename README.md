@@ -10,7 +10,7 @@ Get a cool scatter plot of your twitter history.
 4. Say hi: [Evan Anderson](https://bsky.app/profile/syndrowm.com)
 
 Should look something like this:
-![Plot](app/static/screenshot.png "Title")
+![Plot](static/screenshot.png "Title")
 
 Shout out to:
 [Hank](https://bsky.app/profile/hankgreen.bsky.social/post/3lbldm2xeuc2c)
