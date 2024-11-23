@@ -57,22 +57,7 @@ def main():
         )
         st.altair_chart(c, use_container_width=True)
 
-    st.markdown("""
-            # Welcome
-
-            Get a cool scatter plot of your twitter history.
-            
-            1. Choose your timezone
-            2. Upload the `twitter-headers.js` file from your twitter backup
-            3. Skeet the picture?
-            4. Say hi: [Evan Anderson](https://bsky.app/profile/syndrowm.com)
-
-            Shout out to:
-            [Hank](https://bsky.app/profile/hankgreen.bsky.social/post/3lbldm2xeuc2c)
-            [Tomnomnom](https://bsky.app/profile/tomnomnom.com/post/3lblghzb6qc2u)
-
-
-            """)
+    st.markdown(open("README.md").read())
 
 
     return
