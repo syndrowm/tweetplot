@@ -15,7 +15,7 @@ st.set_page_config(
 def main():
 
     with st.sidebar:
-   
+        st.markdown("[TweetPlot](https://tweetplot.streamlit.app)")
         st.markdown("---")
         timezone = st.selectbox("Choose your timezone", pytz.all_timezones, index=pytz.all_timezones.index("US/Mountain"))
         st.markdown("---")
@@ -24,7 +24,7 @@ def main():
         st.sidebar.markdown("Created by [Evan Anderson](https://bsky.app/profile/syndrowm.com)")
 
 
-    st.title('Tweet addict scatter plot')
+    st.title('TweetPlot: Tweet addict Plot')
 
 
     if uploaded_file is not None and timezone is not None:
@@ -35,10 +35,6 @@ def main():
             return
 
         chart_data = extract_created_times(df, tz=timezone)
-
-        #chart_data = pd.DataFrame(times, columns=["year", "time"])
-        #chart_data['datetime'] = pd.to_datetime(chart_data['year'] + ' ' + chart_data['time'])
-        #chart_data['time_only'] = pd.to_datetime(chart_data['time'], format='%H:%M')
 
         c = (
             alt.Chart(chart_data)
@@ -55,7 +51,7 @@ def main():
                 tooltip=['date', 'time']
             )
         ).properties(
-            title="Tweet Times",
+            title="TweetPlot",
             width=1200,
             height=800
         )
