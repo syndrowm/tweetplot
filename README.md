@@ -13,6 +13,10 @@ Should look something like this:
 ![Plot](static/screenshot.png "Title")
 
 Shout out to:
-[Hank](https://bsky.app/profile/hankgreen.bsky.social/post/3lbldm2xeuc2c)
+
+[Hank Green](https://bsky.app/profile/hankgreen.bsky.social/post/3lbldm2xeuc2c)
+
 [Tomnomnom](https://bsky.app/profile/tomnomnom.com/post/3lblghzb6qc2u)
+
+[Nicolas Grégoire](https://bsky.app/profile/agarri.fr/post/3lbmjp65qn22j)
 
