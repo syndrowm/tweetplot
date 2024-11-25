@@ -1,36 +1,24 @@
 #!/usr/bin/env python
-import pandas as pd
-import json
+import io
 from datetime import datetime
+
+import pandas as pd
 import pytz
 
-JS_HEADER = b'window.YTD.tweet_headers.part0 = '
+JS_HEADER = b"window.YTD.tweet_headers.part0 = "
 
-def load_data(bytes_data):
+
+def load_data(bytes_data, tz="US/Mountain"):
     if not bytes_data.startswith(JS_HEADER):
         raise ValueError("Invalid header")
 
-    bytes_data =  bytes_data.lstrip(JS_HEADER)
-    return json.loads(bytes_data)
-
-def extract_created_times(data, tz='US/Mountain'):
-    output_tz = pytz.timezone(tz)
-    times = []
-    for i in data:
-        t = i['tweet']['created_at']
-        dt = datetime.strptime(t, '%a %b %d %H:%M:%S %z %Y')
-        local = dt.astimezone(output_tz)
-        date=local.strftime('%Y-%m-%d')
-        time=local.strftime('%H:%M')
-        times.append((date, time))
-
-    df = pd.DataFrame(times, columns=["date", "time"])
-    df['datetime'] = pd.to_datetime(df['date'] + ' ' + df['time'])
-    df['time_only'] = pd.to_datetime(df['time'], format='%H:%M')
+    bytes_data = bytes_data.lstrip(JS_HEADER)
+    df = pd.read_json(io.BytesIO(bytes_data))
+    df["created_at"] = df["tweet"].apply(lambda x: pd.to_datetime(x["created_at"]))
+    df["localtime"] = df["created_at"].dt.tz_convert(tz)
     return df
 
 
 if __name__ == "__main__":
 
-    data = load_data(open('tweet-headers.js', 'rb').read())
-    df = extract_created_times(data)
+    df = load_data(open("tweet-headers.js", "rb").read())
